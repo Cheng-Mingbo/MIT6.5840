@@ -89,14 +89,14 @@ func mapSolve(workerID int, task Task, mapf func(string, string) []KeyValue) {
 	}
 	for i := 0; i < reduceNum; i++ {
 		tempFile, err := os.CreateTemp("", "temp"+strconv.Itoa(rand.Int()))
-		enc := json.NewEncoder(tempFile)
+		enc := json.NewEncoder(tempFile) // 创建json编码器
 		if err != nil {
 			log.Fatalf("cannot create temp file")
 			return
 		}
 		// 保存中间文件
 		for _, kv := range HashKv[i] {
-			err = enc.Encode(&kv)
+			err = enc.Encode(&kv) // 编码
 			if err != nil {
 				log.Fatalf("cannot write temp file")
 				return

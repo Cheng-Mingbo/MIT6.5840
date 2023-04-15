@@ -198,7 +198,7 @@ func Worker(mapf func(string, string) []KeyValue,
 	reducef func(string, []string) string) {
 	rand.Seed(time.Now().UnixNano())
 	workerID := rand.Int()
-	fmt.Println("new worker: ", workerID)
+	log.Printf("new worker: %v\n", workerID)
 
 	for true {
 		task := CallGetTask(workerID)
